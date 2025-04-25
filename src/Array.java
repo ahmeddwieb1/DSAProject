@@ -17,16 +17,16 @@ public class Array {
         this.lenght = lenght;
     }
 
-    Scanner sc = new Scanner(System.in);
     private int lenght;
     private int size;
     private int[] ptr;
-
     public Array(int arraysize) {
         ptr = new int[arraysize];
         lenght = 0;
         size = arraysize;
     }
+
+    Scanner sc = new Scanner(System.in);
 
     public void fill() {
         System.out.println("how many item you want fill ");
@@ -47,14 +47,16 @@ public class Array {
             }
         }
     }
-
+    public boolean isempty (int index ){
+        return ptr[index] == 0;
+    }
     void display() {
         System.out.print("Array contents:");
         for (int x = 0; x < lenght; x++) {
             System.out.print(ptr[x] + " ");
         }
-        System.out.println();
-        System.out.println("array size :" + size + "length of array :" + lenght);
+//        System.out.println();
+//        System.out.println("array size :" + size + "length of array :" + lenght);
     }
 
     int search(int key) {
