@@ -1,35 +1,38 @@
 import java.util.Scanner;
 
 public class OpenHash {
-    Array array = new Array(10);
-    singleLinkedList list = new singleLinkedList();
+    Array array;
+
+    public OpenHash(int size) {
+        array = new Array(size);
+    }
+
+    public OpenHash() {
+         array = new Array(10);
+    }
+
+
 
     public void insert(int newitem) {
         int index = newitem % 10;
-        if (array.isempty(index)) {
-            array.insert(index, newitem);
-        } else {
-            list.inesrtFirst(newitem);
-        }
+        array.insert(index, newitem);
+
     }
 
     public void display() {
-        array.display();
-        System.out.println();
-        list.display();
+        array.display2();
     }
-    Scanner sc = new Scanner(System.in);
-    //if doc want insert value
-    public void insertv2() {
-        System.out.println("enter the number you want put Hash ");
-        int newitem = sc.nextInt();
-        System.out.println("enter the number you want mod it ");
-        int theNumberyouwantmod = sc.nextInt();
-        int index = newitem % theNumberyouwantmod;
-        if (array.isempty(index)) {
-            array.insert(index, newitem);
-        } else {
-            list.inesrtFirst(newitem);
-        }
-    }
+
+//    Scanner sc = new Scanner(System.in);
+//
+//    //if doc want insert value by scanner
+//    public void insertv2() {
+//        System.out.println("enter the number you want put Hash ");
+//        int newitem = sc.nextInt();
+//        System.out.println("enter the number you want mod it ");
+//        int the_Number_you_want_mod = sc.nextInt();
+//        int index = newitem % the_Number_you_want_mod;
+//         array.insert(index, newitem);
+//    }
+
 }

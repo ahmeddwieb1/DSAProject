@@ -1,84 +1,58 @@
 import java.util.Scanner;
 
 public class Array {
-    public int getSize() {
-        return size;
-    }
-
-    public void setSize(int size) {
-        this.size = size;
-    }
-
-    public int getLenght() {
-        return lenght;
-    }
-
-    public void setLenght(int lenght) {
-        this.lenght = lenght;
-    }
-
     private int lenght;
     private int size;
-    private int[] ptr;
+    public Node[] ptr;
+
     public Array(int arraysize) {
-        ptr = new int[arraysize];
-        lenght = 0;
-        size = arraysize;
+        ptr = new Node[arraysize];
     }
 
     Scanner sc = new Scanner(System.in);
 
-    public void fill() {
-        System.out.println("how many item you want fill ");
-        int NumOfFill = sc.nextInt();
-        if (NumOfFill > ptr.length) {
-            System.out.println("you can not");
-            fill();
-            return;
-        } else {
-            System.out.println("number of fill " + NumOfFill);
-            System.out.println("length of pointer" + ptr.length);
-            System.out.println("enter the number you want put in array ");
-            for (int x = 0; x < NumOfFill; x++) {
-                int i = sc.nextInt();
-                ptr[x] = i;
-                System.out.println("value of index: " + x + " is: " + ptr[x]);
-                lenght++;
-            }
-        }
-    }
-    public boolean isempty (int index ){
-        return ptr[index] == 0;
-    }
-    void display() {
-        System.out.print("Array contents:");
-        for (int x = 0; x < lenght; x++) {
-            System.out.print(ptr[x] + " ");
-        }
-//        System.out.println();
-//        System.out.println("array size :" + size + "length of array :" + lenght);
+    public boolean isempty(int index) {
+        return ptr[index] == null;
     }
 
-    int search(int key) {
+    //display array with linkedlist
+    public void display2() {
+        for (int x = 0; x < ptr.length; x++) {
+            System.out.print("index " + x + ": ");
+            Node temp = ptr[x];
+            while (temp != null) {
+                System.out.print(temp.Data + "->");
+                temp = temp.Next;
+            }
+            System.out.println("null");
+        }
+    }
+
+    public int search(int key) {
         int index = -1;
         for (int x = 0; x < lenght; x++) {
-            if (ptr[x] == key)
+            if (ptr[x].equals(key))
                 index = x;
         }
         return index;
     }
 
-    void insert(int index, int newitem) {
-        if (lenght < size) {
-            for (int x = lenght; x > index; x--) {
-                ptr[x] = ptr[x - 1];
+
+    public void insert(int index, int newitem) {
+        Node newnode = new Node(newitem);
+        Node temp =ptr[index];
+        if (ptr[index] == null) {
+            ptr[index] = newnode;
+        } else {
+            while (temp.Next!=null){
+                temp= temp.Next;
             }
-            ptr[index] = newitem;
-            lenght++;
-        } else System.out.println("you can not");
+             temp.Next=newnode;
+            newnode=null;
+        }
     }
 
-    void delete(int index) {
+    public void delete(int index) {
         if (index > 0 && lenght < size) {
             for (int x = index; x < lenght; x++) {
                 ptr[x] = ptr[x + 1];
